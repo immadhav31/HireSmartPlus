@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from app.routes.routes import router as job_router
-from app.routes.routes import router as upload_resume
+from fastapi.middleware.cors import CORSMiddleware
+from app.routes.job_routes import job_router
+from app.routes.resume_routes import resume_router
 
 app = FastAPI()
-from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,7 +14,7 @@ app.add_middleware(
 )
 
 app.include_router(job_router, prefix="/jobs", tags=["jobs"])
-app.include_router(upload_resume, prefix="/resume", tags=["resume"])
+app.include_router(resume_router, prefix="/resume", tags=["resume"])
 
 @app.get("/")
 async def read_root():
