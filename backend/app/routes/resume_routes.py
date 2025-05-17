@@ -1,4 +1,5 @@
 from fastapi import APIRouter, File, UploadFile, HTTPException
+from fastapi.responses import Response
 import os, shutil, zipfile
 from app.utils.matching import process_resumes
 
@@ -30,3 +31,12 @@ async def upload_resumes_zip(file: UploadFile = File(...)):
     os.remove(zip_path)
 
     return {"message": "Resumes uploaded and processed successfully."}
+
+@resume_router.options("/upload-resumes-zip/")
+async def preflight_upload_resumes_zip():
+    response = Response()
+    response.headers["Access-Control-Allow-Origin"] = "https://hire-smart-plus.vercel.app"
+    response.headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    return response
