@@ -5,6 +5,7 @@ import shutil
 import zipfile
 from app.utils.matching import process_resumes, match_candidates
 from pydantic import BaseModel
+from fastapi.responses import JSONResponse
 
 router = APIRouter()
 
@@ -67,5 +68,11 @@ async def upload_resumes_zip(file: UploadFile = File(...)):
     shutil.rmtree(extracted_folder)
     os.remove(zip_path)
 
-    return {"message": "Resumes uploaded and processed successfully."}
+    return JSONResponse(
+        content={"message": "Resumes uploaded and processed successfully."},
+        headers={
+            "Access-Control-Allow-Origin": "https://hire-smart-plus.vercel.app",
+            "Access-Control-Allow-Credentials": "true"
+        }
+    )
 
