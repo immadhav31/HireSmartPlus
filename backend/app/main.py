@@ -13,19 +13,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.middleware("http")
-async def add_cors_headers(request: Request, call_next):
-    response = await call_next(request)
-
-    origin = request.headers.get("origin")
-    if origin:  # Only add CORS if request has an Origin header
-        response.headers["Access-Control-Allow-Origin"] = origin
-        response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
-        response.headers["Access-Control-Allow-Headers"] = "Authorization, Content-Type, Accept"
-        response.headers["Access-Control-Allow-Credentials"] = "true"
-
-    return response
-
 app.include_router(job_router, prefix="/jobs", tags=["jobs"])
 app.include_router(resume_router, prefix="/resume", tags=["resume"])
 
