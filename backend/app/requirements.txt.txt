@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pdfplumber
+psycopg2
+scikit-learn
+sqlalchemy
