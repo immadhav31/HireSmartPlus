@@ -4,3 +4,4 @@ pdfplumber
 psycopg2
 scikit-learn
 sqlalchemy
+python-multipart
