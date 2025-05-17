@@ -30,9 +30,9 @@ const ResultsPage = () => {
     }, []);
 
     const convertToCSV = (data: Candidate[]) => {
-        const headers = ["ID", "Name", "Email", "Skills", "Score"];
+        const headers = ["ID", "Name", "Email", "Skills"];
         const rows = data.map((candidate: Candidate) =>
-            `${candidate.id},${candidate.name},${candidate.email},"${candidate.skills}",${candidate.similarity_score ?? "N/A"}`
+            `${candidate.id},${candidate.name},${candidate.email},"${candidate.skills}"`
         );
         return [headers.join(","), ...rows].join("\n");
     };

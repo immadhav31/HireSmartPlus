@@ -111,7 +111,7 @@ const UploadPage = () => {
                   <p className="text-gray-400 text-lg">
                     {isDragActive 
                       ? 'Drop your files here' 
-                      : 'Drag & drop your resume or click to upload'}
+                      : 'Drag & drop your zip file or click to upload'}
                   </p>
                 </>
               )}
